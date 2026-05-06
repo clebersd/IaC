@@ -1,0 +1,76 @@
+
+
+services:
+
+#  web_gui:
+    
+#    container_name: Ollama_web
+
+#    image: ghcr.io/open-webui/open-webui:cuda
+    
+#    ports: 
+    
+#      - "3000:8080"
+
+#    network_mode: "host"
+
+
+#    networks:
+    
+#      - "rede_ia"
+    
+#    volumes:
+    
+#      - /home/reis/IAC/OLLAMA:/root/
+
+#    restart: always
+
+
+  ollama:
+    
+    container_name: Ollama
+    
+    image: ollama/ollama:latest
+    
+    ports:
+      - "11434:11434"
+
+#    network_mode: "host"
+
+   # networks:
+   #   - "rede_ia"
+
+    volumes: 
+      - dados_openclaw:/home/reis/IAC/OLLAMA:/
+
+    restart: always 
+
+
+  openclaw:
+    container_name: OpenClaw
+    
+    image: alpine/openclaw
+    
+    ports:
+    
+      - "18789:18789"
+      - "3000:3000"
+    
+    #networks:
+    
+    #  - "rede_ia"
+    
+    volumes:
+      
+      - dados_ollama:/home/reis/IAC/OPEN_CLAW/:/
+    
+    restart: always
+
+
+volumes:
+  dados_ollama:
+  dados_openclaw:
+
+networks:
+  rede_ia:
+    driver: bridge

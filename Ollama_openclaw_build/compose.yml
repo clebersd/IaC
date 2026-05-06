@@ -1,0 +1,30 @@
+
+
+
+
+
+services:
+  agent: 
+
+    build: . 
+
+    container_name: ollama
+    hostname: Ollama_agent
+
+    ports:
+
+      - "11434:11434"
+
+      - "18789:18789"
+
+      - "3000:3000"
+
+    volumes:
+      
+      - data:/home/reis/IAC/Ollama_openclaw_build:/root/
+    restart: always
+
+ 
+
+volumes:
+  data:
