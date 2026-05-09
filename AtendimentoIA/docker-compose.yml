@@ -1,0 +1,20 @@
+services:
+  
+  n8n:
+
+    container_name: "01"
+
+    image: n8nio/n8n
+    
+    ports:
+      - "5678:5678"
+
+  ollama:
+    
+    container_name: "02"
+
+    image: ollama/ollama:latest
+    
+    ports:
+      
+      - "11434:11434"
