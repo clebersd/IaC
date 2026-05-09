@@ -23,7 +23,15 @@ services:
       
       - data:/home/reis/IAC/Ollama_openclaw_build:/root/
     restart: always
-
+    
+    
+    deploy:
+      resources:
+        reservations:
+          devices:
+           - driver: nvidia
+             count: all
+             capabilities: [gpu]
  
 
 volumes:
