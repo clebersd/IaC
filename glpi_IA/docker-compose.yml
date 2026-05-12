@@ -1,3 +1,5 @@
+
+
 services:
 
 ##########################################################################################
@@ -50,7 +52,7 @@ services:
       MYSQL_DATABASE: glpi
       MYSQL_USER: glpi
       MYSQL_PASSWORD: 123456 # senha inicial trocar posteriormente
-      
+
     restart: always    
 
  ######################################################################################## 
@@ -123,6 +125,15 @@ services:
 
     volumes:
       - n8n_glpi: /root/.ollama
+ 
+    deploy:
+      resources:
+        reservations:
+          devices:
+           - driver: nvidia
+             count: all
+             capabilities: [gpu]
+ 
 
 
 #######################################################################################
