@@ -51,10 +51,10 @@ services:
 
     environment:
 
-      MYSQL_ROOT_PASSWORD: 123456 # senha inicial trocar posteriormente
+      MYSQL_ROOT_PASSWORD: 123456 # Senha inicial trocar posteriormente
       MYSQL_DATABASE: glpi
       MYSQL_USER: glpi
-      MYSQL_PASSWORD: 123456 # senha inicial trocar posteriormente
+      MYSQL_PASSWORD: 123456 # Senha inicial trocar posteriormente
 
     restart: always    
 
