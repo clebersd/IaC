@@ -1,5 +1,7 @@
 services:
 
+##########################################################################################
+
   glpi_prod:
     
     container_name: glpi-prod-server
@@ -21,8 +23,10 @@ services:
     networks:
     
       - "glpi"
+    
+    restart: always
 
-
+###########################################################################################
 
   mysql_prod:
     
@@ -46,9 +50,11 @@ services:
       MYSQL_DATABASE: glpi
       MYSQL_USER: glpi
       MYSQL_PASSWORD: 123456 # senha inicial trocar posteriormente
-    
+      
+      
+     restart: always    
 
-  
+ ######################################################################################## 
 
   phpmyadmin:
     
@@ -75,22 +81,44 @@ services:
 
     depends_on:
       - mysql_prod
-  
 
+    restart: always
 
+#########################################################################################
 
-#  n8n_prod:
+  n8n_prod:
     
-#    container_name: n8n-prod
-#    hostname: n8n
+    container_name: n8n-prod
 
+    hostname: n8n
+
+    ports:
+
+      -"5678:5678"
+
+    networks:
+
+      -"glpi"
+
+
+###########################################################################################
 
 
 #  Ollama_prod:
     
 #    container_name: Ollama-prod
+
 #    hostname: ollama
 
+#    ports:
+
+#     - "11434:11434"
+
+#    networks:
+    
+#      - "glpi"
+
+#######################################################################################
 
 
 volumes:
