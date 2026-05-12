@@ -51,8 +51,7 @@ services:
       MYSQL_USER: glpi
       MYSQL_PASSWORD: 123456 # senha inicial trocar posteriormente
       
-      
-     restart: always    
+    restart: always    
 
  ######################################################################################## 
 
@@ -94,15 +93,15 @@ services:
 
     ports:
 
-      -"5678:5678"
+      - "5678:5678"
 
     volumes:
 
-      - n8n_glpi: /home/node/.n8n
+      - n8n_glpi:/home/node/.n8n
 
     networks:
 
-      -"glpi"
+      - "glpi"
 
 
 ###########################################################################################
@@ -121,6 +120,7 @@ services:
     networks:
     
       - "glpi"
+
     volumes:
       - n8n_glpi: /root/.ollama
 
