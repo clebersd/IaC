@@ -1,37 +1,83 @@
 
-service:
+services:
 
   glpi_prod:
     
     container_name: glpi-prod-server
-    
+
+    hostname: glpi
+
     image: glpi/glpi:latest
 
     depends_on:
       - mysql_prod
+
+    ports:
+      - "80:80"
+    
+    volumes:
+
+      - http_glpi:/etc/wwww/glpi/
+
+    networks:
+      - "glpi"
+
 
 
   mysql_prod:
     
     container_name: mysql-prod-server
 
+    hostname: dbserver
+    
     image: mysql:latest
 
+    volumes:
+      - mysql_glpi:/var/lib/mysql
+
+    networks:
+      - "glpi"
   
-  phpmyadmin:
-    
-    container_name: phpmyadmin-prod
 
+
+
+#  phpmyadmin:
+    
+#    container_name: phpmyadmin-prod
+    
+#    hostname: phpmyadmin
+
+#    image: phpmyadmin
+
+#    ports:
+#      - "8080:80"
+
+#    depends_on:
+#      - mysql_prod
   
 
-  workflow:
+
+
+#  n8n_prod:
     
-    container_name: n8n-prod
+#    container_name: n8n-prod
+#    hostname: n8n
 
 
-  IA:
+
+#  Ollama_prod:
     
-    conatiner_name: Ollama-prod
+#    container_name: Ollama-prod
+#    hostname: ollama
 
 
+
+volume:
+
+  http_glpi:
+  mysql_glpi:
+  
+network:
+
+  glpi:
 
