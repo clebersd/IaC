@@ -1,0 +1,37 @@
+
+service:
+
+  glpi_prod:
+    
+    container_name: glpi-prod-server
+    
+    image: glpi/glpi:latest
+
+    depends_on:
+      - mysql_prod
+
+
+  mysql_prod:
+    
+    container_name: mysql-prod-server
+
+    image: mysql:latest
+
+  
+  phpmyadmin:
+    
+    container_name: phpmyadmin-prod
+
+  
+
+  workflow:
+    
+    container_name: n8n-prod
+
+
+  IA:
+    
+    conatiner_name: Ollama-prod
+
+
+
