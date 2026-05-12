@@ -1,4 +1,3 @@
-
 services:
 
   glpi_prod:
@@ -20,6 +19,7 @@ services:
       - http_glpi:/etc/wwww/glpi/
 
     networks:
+    
       - "glpi"
 
 
@@ -36,24 +36,45 @@ services:
       - mysql_glpi:/var/lib/mysql
 
     networks:
+    
       - "glpi"
+    
+
+    environment:
+
+      MYSQL_ROOT_PASSWORD: 123456 # senha inicial trocar posteriormente
+      MYSQL_DATABASE: glpi
+      MYSQL_USER: glpi
+      MYSQL_PASSWORD: 123456 # senha inicial trocar posteriormente
+    
+
   
 
-
-
-#  phpmyadmin:
+  phpmyadmin:
     
-#    container_name: phpmyadmin-prod
+    container_name: phpmyadmin-prod
     
-#    hostname: phpmyadmin
+    hostname: phpmyadmin
 
-#    image: phpmyadmin
+    image: phpmyadmin
 
-#    ports:
-#      - "8080:80"
+    environment:
 
-#    depends_on:
-#      - mysql_prod
+      PMA_HOST: mysql-prod-server
+      PMA_USER: glpi
+      PMA_PASSWORD: 123456
+
+
+    ports:
+      - "8080:80"
+
+
+    networks:
+    
+      - "glpi"
+
+    depends_on:
+      - mysql_prod
   
 
 
@@ -72,12 +93,11 @@ services:
 
 
 
-volume:
+volumes:
 
   http_glpi:
   mysql_glpi:
   
-network:
+networks:
 
   glpi:
-
