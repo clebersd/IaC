@@ -96,6 +96,10 @@ services:
 
       -"5678:5678"
 
+    volumes:
+
+      - n8n_glpi: /home/node/.n8n
+
     networks:
 
       -"glpi"
@@ -104,19 +108,22 @@ services:
 ###########################################################################################
 
 
-#  Ollama_prod:
+  Ollama_prod:
     
-#    container_name: Ollama-prod
+    container_name: Ollama-prod
 
-#    hostname: ollama
+    hostname: ollama
 
-#    ports:
+    ports:
 
-#     - "11434:11434"
+     - "11434:11434"
 
-#    networks:
+    networks:
     
-#      - "glpi"
+      - "glpi"
+    volumes:
+      - n8n_glpi: /root/.ollama
+
 
 #######################################################################################
 
@@ -125,6 +132,8 @@ volumes:
 
   http_glpi:
   mysql_glpi:
+  n8n_glpi:
+  
   
 networks:
 
