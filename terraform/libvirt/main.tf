@@ -136,7 +136,6 @@ resource "libvirt_domain" "host0" {
 
 
 
-
 resource "libvirt_domain" "host1" {
 
   name = "host1"
