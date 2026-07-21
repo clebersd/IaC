@@ -1,0 +1,50 @@
+- name: Criar usuario basico
+  user:
+    
+    name: "{{item.nome}}"
+    create_home: yes
+    shell: /bin/bash
+    password: "{{'root2713!'| password_hash('sha512')}}"
+  loop: "{{usuarios}}"
+
+
+
+#- name: Ajustar Acesso SSH
+#  lineinfile:
+#    path: /etc/ssh/sshd_config
+#    regex: '^PasswordAuthentication no'
+#    line: PasswordAuthentication yes
+#    state: present
+  
+#- name: Ajustar Acesso SSH - 2
+#  lineinfile:
+#    path: /etc/ssh/sshd_config
+#    regex: '^KbdInteractiveAuthentication no'
+#    line: KbdInteractiveAuthentication yes
+#    state: present
+  
+#- name: Reiniciar SSH 
+#  service:
+#    name: ssh
+#    state: restarted
+
+- name: Remover Usuarios obsoletos
+  user:
+    name: "{{item.nome}}"
+    state: absent
+    remove: yes
+  loop: "{{remover_user}}"
+
+- name: Teste key
+  authorized_key:
+    user: "{{item.nome}}"
+    state: present
+    key: "{{lookup('file','/home/reis/.ssh/reis.pub')}}"
+  loop: "{{usuarios}}"
+    
+
+
+#- name: Ajustar senha usuario root
+#  user:
+#    name: root
+#    password: "{{'root9975'| password_hash('sha512')}}"

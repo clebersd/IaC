@@ -1,0 +1,28 @@
+[infra]
+
+192.168.1.5  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+192.168.1.6  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+
+192.168.1.7  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+
+192.168.1.8  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+
+
+[host0]
+192.168.1.5  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+
+[host1]
+192.168.1.6  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+
+[host2]
+192.168.1.7  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis
+
+
+[host3]
+192.168.1.8  ansible_user=debian  ansible_ssh_private_key_file=~/.ssh/reis

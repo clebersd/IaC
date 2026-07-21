@@ -1,0 +1,11 @@
+---
+
+- hosts: host1
+  
+  become: yes
+
+  
+  roles:
+#    - common
+#    - users
+     - docker
