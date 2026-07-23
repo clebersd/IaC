@@ -64,18 +64,12 @@ Este repositório concentra meus estudos, testes, laboratórios e projetos relac
 # Estrutura do Repositório
 
 ```bash
-.
-├── docker/
-├── linux/
-├── cloud/
-│   ├── aws/
-│   ├── azure/
-│   └── gcp/
-├── scripts/
-├── monitoring/
-├── ai-agents/
-└── labs/
-```
+
+- ansible
+- docker 
+- ia-agents
+- terraform
+
 
 ---
 
