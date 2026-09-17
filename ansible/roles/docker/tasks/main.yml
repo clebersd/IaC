@@ -1,0 +1,17 @@
+#- name: Criar container teste - 1
+#  community.docker.docker_container:
+#    name: teste1
+#    image: nginx
+#    volumes:
+#      - data
+#    ports:
+#      - "80:80"
+- name: Remover container
+  docker_container:
+    name: teste1
+    state: absent
+
+- name: Remover Images
+  docker_image:
+    state: absent
+    name: nginx 

@@ -1,0 +1,29 @@
+---
+
+- name: apt update
+  apt:
+    update_cache: yes
+
+- name: Instalar pacotes defaults
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - docker.io
+      - docker-compose
+    state: present
+
+- name: Iniciar Docker Server
+  service:
+    name: docker
+    state: started
+
+
+
+
+    
+#- name: Reiniciar
+#  ansible.builtin.reboot:

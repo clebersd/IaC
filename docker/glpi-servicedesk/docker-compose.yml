@@ -1,0 +1,152 @@
+
+
+#VER EVOLUTION API
+
+
+services:
+
+##########################################################################################
+
+  glpi_prod:
+    
+    container_name: glpi-prod-server
+
+    hostname: glpi
+
+    image: glpi/glpi:latest
+
+    depends_on:
+      - mysql_prod
+
+    ports:
+      - "80:80"
+    
+    volumes:
+
+      - http_glpi:/etc/wwww/glpi/
+
+    networks:
+    
+      - "glpi"
+    
+    restart: always
+
+###########################################################################################
+
+  mysql_prod:
+    
+    container_name: mysql-prod-server
+
+    hostname: dbserver
+    
+    image: mysql:latest
+
+    volumes:
+      - mysql_glpi:/var/lib/mysql
+
+    networks:
+    
+      - "glpi"
+    
+
+    environment:
+
+      MYSQL_ROOT_PASSWORD: 123456 # Senha inicial trocar posteriormente
+      MYSQL_DATABASE: glpi
+      MYSQL_USER: glpi
+      MYSQL_PASSWORD: 123456 # Senha inicial trocar posteriormente
+
+    restart: always    
+
+ ######################################################################################## 
+
+  phpmyadmin:
+    
+    container_name: phpmyadmin-prod
+    
+    hostname: phpmyadmin
+
+    image: phpmyadmin
+
+    environment:
+
+      PMA_HOST: mysql-prod-server
+      PMA_USER: glpi
+      PMA_PASSWORD: 123456
+
+
+    ports:
+      - "8080:80"
+
+
+    networks:
+    
+      - "glpi"
+
+    depends_on:
+      - mysql_prod
+
+    restart: always
+
+#########################################################################################
+
+  n8n_prod:
+    
+    container_name: n8n-prod
+
+    hostname: n8n
+
+    ports:
+
+      - "5678:5678"
+
+    volumes:
+
+      - n8n_glpi:/home/node/.n8n
+
+    networks:
+
+      - "glpi"
+
+
+###########################################################################################
+
+
+  Ollama_prod:
+    
+    container_name: Ollama-prod
+
+    hostname: ollama
+
+    ports:
+
+     - "11434:11434"
+
+    networks:
+    
+      - "glpi"
+
+    volumes:
+      - n8n_glpi: /root/.ollama
+ 
+    deploy:
+      resources:
+        reservations:
+          devices:
+           - driver: nvidia
+             count: all
+             capabilities: [gpu]
+ 
+#######################################################################################
+
+volumes:
+
+  http_glpi:
+  mysql_glpi:
+  n8n_glpi:
+  
+  
+networks:
+
+  glpi:
+    driver: bridge

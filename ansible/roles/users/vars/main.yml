@@ -1,0 +1,12 @@
+
+---
+  usuarios:
+    - nome: reis
+    - nome: bomfim
+  
+  
+  remover_user:
+    - nome: irc
+    - nome: tcpdump
+    - nome: list
+    - nome: operacao
